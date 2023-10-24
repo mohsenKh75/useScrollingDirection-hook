@@ -1,7 +1,12 @@
 import { RefObject, useEffect, useRef, useState } from 'react';
-import { SCROLL_DIRECTION } from '@/constants/scrollDirection';
-import { ScrollDirectionType } from '@/constants/scrollDirection';
-import { isServerSide } from '@/utils';
+
+const isServerSide = typeof window === 'undefined';
+const SCROLL_DIRECTION = {
+  UP: 'UP',
+  DOWN: 'DOWN',
+  NONE: 'NONE'
+} as const;
+
 
 export const useScrollDirection = (ref?: RefObject<HTMLDivElement | null>): ScrollDirectionType => {
   const getScrollY = () => {
